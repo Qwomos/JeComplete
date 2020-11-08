@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using JeComplete.Data;
 
-namespace JeComplete.Models.Home 
+namespace JeComplete.Models
 {
-    public class IndexModel
+    public class HomeIndexModel
     {
         public List<Person> PeopleList {get; set;}
     }

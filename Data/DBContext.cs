@@ -5,18 +5,18 @@ using Bogus.DataSets;
 
 namespace JeComplete.Data 
 {
-    public class DBService
+    public class DBContext
     {
-        private static DBService _instance;
+        private static DBContext _instance;
         public List<Person> PeopleList { get; set; }
 
-        private DBService() {}
+        private DBContext() {}
 
-        public static DBService GetInstance()
+        public static DBContext GetInstance()
         {
             if (_instance == null) 
             {
-                _instance = new DBService();
+                _instance = new DBContext();
                 Init();
             } 
 

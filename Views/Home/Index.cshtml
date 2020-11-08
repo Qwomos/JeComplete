@@ -1,13 +1,5 @@
-﻿@model JeComplete.Models.Home.IndexModel
+﻿@model JeComplete.Models.HomeIndexModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<ul>
-    @foreach (var person in Model.PeopleList)
-    {
-        <li>
-            @person.FirstName @person.LastName
-        </li>
-    }
-</ul>
