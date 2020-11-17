@@ -1,0 +1,14 @@
+@model JeComplete.Models.PeopleListModel
+
+@{
+    ViewData["Title"] = "Directory of People";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="list-group">
+    @foreach(var person in Model.PeopleList)
+    {
+        <a class="list-group-item list-group-item-action" asp-controller="People" asp-action="PersonnelFile" asp-route-id="@person.Id">@person.LastName, @person.FirstName</a>
+    }
+</ul>

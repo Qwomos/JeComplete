@@ -1,21 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using JeComplete.Data;
-using JeComplete.Models;
 
 namespace JeComplete.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly DBContext _context;
+        private readonly ILogger<HomeController> Logger;
 
-        public HomeController(ILogger<HomeController> logger, DBContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
-            _context = context;
+            Logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

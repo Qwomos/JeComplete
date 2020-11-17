@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using JeComplete.Data;
+using JeComplete.Services;
 
 namespace JeComplete
 {
@@ -19,8 +19,8 @@ namespace JeComplete
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(typeof(DBContext), s => DBContext.GetInstance());
-            services.AddControllersWithViews();
+            services.AddSingleton<PersonService>(PersonService.GetInstance());
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

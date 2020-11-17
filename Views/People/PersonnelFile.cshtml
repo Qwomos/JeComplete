@@ -1,0 +1,13 @@
+@model JeComplete.Models.PersonnelFileModel
+
+@if (Model.Person != null)
+{
+    <h1>@ViewData["Title"]</h1>
+    <p>
+        First Name : @Model.Person.FirstName<br>
+        Last Name : @Model.Person.LastName<br>
+        Date of Birth : @Model.Person.Birthdate.ToShortDateString()<br>
+        Gender : @Model.Person.Gender.ToString()<br>
+        Role : @Model.Person.Role<br>
+    </p>
+}
