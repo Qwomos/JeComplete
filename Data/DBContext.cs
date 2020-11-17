@@ -33,7 +33,7 @@ namespace JeComplete.Data
             .RuleFor(p => p.Id, f => f.Random.ULong())
             .RuleFor(p => p.Gender, f => f.PickRandom<Name.Gender>())
             .RuleFor(p => p.FirstName, (f, p) => f.Name.FirstName(p.Gender))
-            .RuleFor(p => p.LastName, (f, p) => f.Name.LastName(p.Gender))
+            .RuleFor(p => p.LastName, (f) => f.Name.LastName())
             .RuleFor(p => p.Role, f => f.PickRandom<string>(roles))
             .RuleFor(p => p.Birthdate, f => f.Date.Between(DateTime.Today.AddYears(-75), DateTime.Today.AddYears(-18)));
             _instance.PeopleList = fakerPerson.Generate(1000);
