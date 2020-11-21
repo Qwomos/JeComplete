@@ -37,7 +37,7 @@ namespace JeComplete.Controllers
             };
 
             if (model.Person != null)
-                ViewData["Title"] = $"Personnel File of {model.Person.FirstName} {model.Person.LastName}";
+                ViewData["Title"] = $"Dossier personnel de {model.Person.FirstName} {model.Person.LastName}";
 
             return View(model);
         }

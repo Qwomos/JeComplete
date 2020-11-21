@@ -26,7 +26,7 @@ namespace JeComplete.Data
         private static void Init()
         {
             Faker<Person> fakerPerson;
-            string[] roles = { "Administrator", "Buyer", "Seller", "Adviser", "Secretary", "Accounting" };
+            string[] roles = { "Administrateur", "Acheteur", "Vendeur", "Conseiller", "Secrétaire", "Comptable" };
 
             Randomizer.Seed = new Random(293758);
             fakerPerson = new Faker<Person>()
