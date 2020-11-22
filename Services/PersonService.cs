@@ -34,5 +34,10 @@ namespace JeComplete.Services
                     orderby person.LastName, person.FirstName
                     select person).ToList();
         }
+
+        public List<Person> SearchPeopleByName(string name)
+        {
+            return null;
+        }
     }
 }

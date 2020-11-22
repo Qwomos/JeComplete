@@ -2,4 +2,33 @@
     ViewData["Title"] = "Accueil";
 }
 
+@section Scripts {
+    <script>
+        $(document).ready(() => {
+            $("#ddlSearch").keyup(ddlSearch_onKeyUp);
+        });
+
+        function ddlSearch_onKeyUp() {
+            let lstResults = $("#lstResults");
+            let term = $("#ddlSearch").val();
+
+
+        }
+    </script>
+}
+
 <h1>@ViewData["Title"]</h1>
+
+
+<div class="row">
+    <div class="col-sm-6 col-lg-4">
+        <div class="form-group">
+            <label for="ddlSearch" class="">Recherche</label>
+            <input type="text" id="ddlSearch" class="form-control" />
+            <div class="list-group" id="lstResults">    
+            </div>
+        </div>
+    </div>
+</div>
+
+
