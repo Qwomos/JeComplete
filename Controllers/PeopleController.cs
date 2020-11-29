@@ -29,7 +29,7 @@ namespace JeComplete.Controllers
         }
 
         [HttpGet]
-        public IActionResult PersonnelFile(ulong id)
+        public IActionResult PersonnelFile(string id)
         {
             PersonnelFileModel model = new PersonnelFileModel
             {

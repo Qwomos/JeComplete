@@ -13,8 +13,19 @@
             let term = $("#ddlSearch").val();
 
             if (term !== null && term.length > 1) {
-                $.get(`people/SearchPeopleByNames/${term}`, (result) => {
-                    console.log(result);
+                $.get(`people/SearchPeopleByNames/${term}`, (people) => {
+                    lstResults.children().remove();
+
+                    if (people !== null) {
+                        for (let person of people){
+                            let anchor = document.createElement("a");
+
+                            anchor.innerText = `${person.firstName} ${person.lastName}`;
+                            anchor.href= `People/PersonnelFile/${person.id}`;
+                            anchor.classname = "list-group-item";
+                            lstResults.append(anchor);
+                        }
+                    }
                 });
             }
         }

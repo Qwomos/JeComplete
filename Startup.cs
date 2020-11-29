@@ -41,7 +41,7 @@ namespace JeComplete
             {
                 endpoints.MapControllerRoute(
                     name: "search",
-                    pattern: "{controller=People}/{action=SearchPeopleByNames}/{query}"
+                    pattern: "{controller=People}/{action=SearchPeopleByNames}/{query:alpha}"
                 );
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -30,7 +30,7 @@ namespace JeComplete.Data
 
             Randomizer.Seed = new Random(293758);
             fakerPerson = new Faker<Person>()
-            .RuleFor(p => p.Id, f => f.Random.ULong())
+            .RuleFor(p => p.Id, f => f.Random.ULong().ToString())
             .RuleFor(p => p.Gender, f => f.PickRandom<Name.Gender>())
             .RuleFor(p => p.FirstName, (f, p) => f.Name.FirstName(p.Gender))
             .RuleFor(p => p.LastName, (f) => f.Name.LastName())

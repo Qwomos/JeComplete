@@ -23,7 +23,7 @@ namespace JeComplete.Services
             return _instance;
         }
 
-        public Person GetPerson(ulong id)
+        public Person GetPerson(string id)
         {
             return Context.PeopleList.Find(p => p.Id == id);
         }
@@ -51,8 +51,7 @@ namespace JeComplete.Services
             }
 
             return (from person in Context.PeopleList
-                    where names.Any(n => person.FirstName.ToLower().Contains(n.ToLower())) ||
-                        names.Any(n => person.LastName.ToLower().Contains(n.ToLower()))
+                    where names.Any(n => $"{person.FirstName.ToLower()} {person.LastName.ToLower()}".Contains(n.ToLower()))
                     select person).Take(10).ToList();
         }
     }
