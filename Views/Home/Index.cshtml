@@ -12,7 +12,11 @@
             let lstResults = $("#lstResults");
             let term = $("#ddlSearch").val();
 
-
+            if (term !== null && term.length > 1) {
+                $.get(`people/SearchPeopleByNames/${term}`, (result) => {
+                    console.log(result);
+                });
+            }
         }
     </script>
 }

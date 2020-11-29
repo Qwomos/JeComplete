@@ -35,9 +35,25 @@ namespace JeComplete.Services
                     select person).ToList();
         }
 
-        public List<Person> SearchPeopleByName(string name)
+        public List<Person> SearchPeopleByNames(string query)
         {
-            return null;
+            string[] names;
+
+            if (query == null)
+                return null;
+
+            if (query.Contains(' '))
+                names = query.Split(' ');
+            else 
+            {
+                names = new string[1];
+                names[0] = query;
+            }
+
+            return (from person in Context.PeopleList
+                    where names.Any(n => person.FirstName.ToLower().Contains(n.ToLower())) ||
+                        names.Any(n => person.LastName.ToLower().Contains(n.ToLower()))
+                    select person).Take(10).ToList();
         }
     }
 }

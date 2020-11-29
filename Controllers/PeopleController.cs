@@ -41,5 +41,11 @@ namespace JeComplete.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult SearchPeopleByNames(string query)
+        {
+            return Json(Service.SearchPeopleByNames(query));
+        }
     }
 }
