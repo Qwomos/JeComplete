@@ -51,7 +51,7 @@ namespace JeComplete.Services
             }
 
             return (from person in Context.PeopleList
-                    where names.Any(n => $"{person.FirstName.ToLower()} {person.LastName.ToLower()}".Contains(n.ToLower()))
+                    where names.All(n => $"{person.FirstName.ToLower()} {person.LastName.ToLower()}".Contains(n.ToLower()))
                     select person).Take(10).ToList();
         }
     }

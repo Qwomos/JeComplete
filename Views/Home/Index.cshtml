@@ -13,7 +13,7 @@
             let term = $("#ddlSearch").val();
 
             if (term !== null && term.length > 1) {
-                $.get(`people/SearchPeopleByNames/${term}`, (people) => {
+                $.get(`people/SearchPeopleByNames/${encodeURIComponent(term)}`, (people) => {
                     lstResults.children().remove();
 
                     if (people !== null) {

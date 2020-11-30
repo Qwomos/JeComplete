@@ -40,10 +40,6 @@ namespace JeComplete
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "search",
-                    pattern: "{controller=People}/{action=SearchPeopleByNames}/{query:alpha}"
-                );
-                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
