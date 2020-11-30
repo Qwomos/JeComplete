@@ -23,7 +23,7 @@ namespace JeComplete.Services
             return _instance;
         }
 
-        public Person GetPerson(ulong id)
+        public Person GetPerson(string id)
         {
             return Context.PeopleList.Find(p => p.Id == id);
         }
@@ -33,6 +33,26 @@ namespace JeComplete.Services
             return (from person in Context.PeopleList
                     orderby person.LastName, person.FirstName
                     select person).ToList();
+        }
+
+        public List<Person> SearchPeopleByNames(string query)
+        {
+            string[] names;
+
+            if (query == null)
+                return null;
+
+            if (query.Contains(' '))
+                names = query.Split(' ');
+            else 
+            {
+                names = new string[1];
+                names[0] = query;
+            }
+
+            return (from person in Context.PeopleList
+                    where names.All(n => $"{person.FirstName.ToLower()} {person.LastName.ToLower()}".Contains(n.ToLower()))
+                    select person).Take(10).ToList();
         }
     }
 }

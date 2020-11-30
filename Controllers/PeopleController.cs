@@ -29,7 +29,7 @@ namespace JeComplete.Controllers
         }
 
         [HttpGet]
-        public IActionResult PersonnelFile(ulong id)
+        public IActionResult PersonnelFile(string id)
         {
             PersonnelFileModel model = new PersonnelFileModel
             {
@@ -40,6 +40,12 @@ namespace JeComplete.Controllers
                 ViewData["Title"] = $"Dossier personnel de {model.Person.FirstName} {model.Person.LastName}";
 
             return View(model);
+        }
+
+        [HttpGet("People/SearchPeopleByNames/{query}")]
+        public IActionResult SearchPeopleByNames(string query)
+        {
+            return Json(Service.SearchPeopleByNames(query));
         }
     }
 }
