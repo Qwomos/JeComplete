@@ -18,16 +18,21 @@
 
                     if (people !== null) {
                         for (let person of people){
-                            let anchor = document.createElement("a");
-
-                            anchor.innerText = `${person.firstName} ${person.lastName}`;
-                            anchor.href= `People/PersonnelFile/${person.id}`;
-                            anchor.classname = "list-group-item";
-                            lstResults.append(anchor);
+                            displayForRedirect(person);
                         }
                     }
                 });
             }
+        }
+
+        function displayForRedirect(person) {
+            let anchor = document.createElement("a");
+
+            anchor.innerText = `${person.firstName} ${person.lastName}`;
+            anchor.href= `People/PersonnelFile/${person.id}`;
+            $(anchor).addClass("list-group-item");
+            $(anchor).addClass("list-group-item-action");
+            lstResults.append(anchor);
         }
     </script>
 }
