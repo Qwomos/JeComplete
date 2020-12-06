@@ -9,7 +9,7 @@
         });
 
         function ddlSearch_onKeyUp() {
-            let lstResults = $("#lstResults");
+            var lstResults = $("#lstResults");
             let term = $("#ddlSearch").val();
 
             if (term !== null && term.length > 1) {
@@ -18,7 +18,8 @@
 
                     if (people !== null) {
                         for (let person of people){
-                            displayForRedirect(person);
+                            //displayForRedirect(person);
+                            displayResults(person);
                         }
                     }
                 });
@@ -29,10 +30,33 @@
             let anchor = document.createElement("a");
 
             anchor.innerText = `${person.firstName} ${person.lastName}`;
-            anchor.href= `People/PersonnelFile/${person.id}`;
+            anchor.href = `People/PersonnelFile/${person.id}`;
             $(anchor).addClass("list-group-item");
             $(anchor).addClass("list-group-item-action");
             lstResults.append(anchor);
+        }
+
+        function displayResults(person) {
+            let anchor = document.createElement("a");
+
+            anchor.innerText = `${person.firstName} ${person.lastName}`;
+            anchor.href = "#";
+            $(anchor).attr("data-id", person.id);
+            $(anchor).click(selectPerson);
+            $(anchor).addClass("list-group-item");
+            $(anchor).addClass("list-group-item-action");
+            lstResults.append(anchor);
+        }
+
+        function selectPerson(e) {
+            e.preventDefault();
+
+            let personAnchor = $(this);
+            let ddlSearch = $("#ddlSearch")
+
+            $("#hidIdPerson").val(personAnchor.data("id"));
+            $("#ddlSearch").val(personAnchor.text());
+            $("#lstResults").empty();
         }
     </script>
 }
@@ -44,6 +68,7 @@
     <div class="col-sm-6 col-lg-4">
         <div class="form-group">
             <label for="ddlSearch" class="">Recherche</label>
+            <input type="hidden" id="hidIdPerson" />
             <input type="text" id="ddlSearch" class="form-control" />
             <div class="list-group" id="lstResults">    
             </div>
