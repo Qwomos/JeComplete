@@ -1,4 +1,6 @@
-<input type="hidden" id="hidIdPerson" />
+@model JeComplete.Models.AutocompleteModel
+
+<input type="hidden" id="hidDataId" />
 <input type="text" id="ddlSearch" class="form-control" />
 <div class="list-group" id="lstResults">
 
@@ -9,7 +11,6 @@
         * Url : Url used for the search
         * Callback : Callback function when the user click on a list element
         * DataText : Template for the display of an list item
-        * DataId : Identifier to write into the hidden input ( hiddenfield )
         * Class : Additionnal CSS class for the input control
     */
 
@@ -52,20 +53,10 @@
         anchor.innerText = `${person.firstName} ${person.lastName}`;
         anchor.href = "#";
         $(anchor).attr("data-id", person.id);
-        $(anchor).click(selectPerson);
+        //$(anchor).click(selectPerson);
         $(anchor).addClass("list-group-item");
         $(anchor).addClass("list-group-item-action");
         lstResults.append(anchor);
     }
 
-    function selectPerson(e) {
-        e.preventDefault();
-
-        let personAnchor = $(this);
-        let ddlSearch = $("#ddlSearch")
-
-        $("#hidIdPerson").val(personAnchor.data("id"));
-        $("#ddlSearch").val(personAnchor.text());
-        $("#lstResults").empty();
-    }
 </script>

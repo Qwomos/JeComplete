@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using JeComplete.Models;
 
 namespace JeComplete.Controllers
 {
@@ -15,7 +16,14 @@ namespace JeComplete.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            HomeIndexModel model = new HomeIndexModel();
+            
+            model.Autocomplete = new AutocompleteModel 
+            {
+                Id = "ddlSearch"
+            };
+
+            return View(model);
         }
     }
 }
