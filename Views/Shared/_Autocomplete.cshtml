@@ -1,5 +1,7 @@
-<input type="hidden" id="hidIdPerson" />
-<input type="text" id="ddlSearch" class="form-control" />
+@model JeComplete.Models.AutocompleteModel
+
+<input type="hidden" id="hidDataId" />
+<input type="text" class="form-control" id=@Model.Id />
 <div class="list-group" id="lstResults">
 
 <script>
@@ -9,41 +11,33 @@
         * Url : Url used for the search
         * Callback : Callback function when the user click on a list element
         * DataText : Template for the display of an list item
-        * DataId : Identifier to write into the hidden input ( hiddenfield )
+        * DataId: Id of the selected item
         * Class : Additionnal CSS class for the input control
     */
 
+    var id = "@Model.Id";
+    var lstResults = $("#lstResults");
+    var hidDataId = $("#hidDataId");
+
     $(document).ready(() => {
-        $("#ddlSearch").keyup(ddlSearch_onKeyUp);
+        $(`#${id}`).keyup(ddlSearch_onKeyUp);
     });
 
     function ddlSearch_onKeyUp() {
-        var lstResults = $("#lstResults");
-        let term = $("#ddlSearch").val();
+        let term = $(`#${id}`).val();
 
         lstResults.children().remove();
 
         if (term !== null && term.length > 1) {
-            $.get(`people/SearchPeopleByNames/${encodeURIComponent(term)}`, (people) => {
-                if (people !== null) {
+            $.get(`people/SearchPeopleByNames/${encodeURIComponent(term)}`, (list) => {
+                if (list !== null) {
 
-                    for (let person of people) {
-                        //displayForRedirect(person);
-                        displayResults(person);
+                    for (let item of list) {
+                        displayResults(item);
                     }
                 }
             });
         }
-    }
-
-    function displayForRedirect(person) {
-        let anchor = document.createElement("a");
-
-        anchor.innerText = `${person.firstName} ${person.lastName}`;
-        anchor.href = `People/PersonnelFile/${person.id}`;
-        $(anchor).addClass("list-group-item");
-        $(anchor).addClass("list-group-item-action");
-        lstResults.append(anchor);
     }
 
     function displayResults(person) {
@@ -52,20 +46,18 @@
         anchor.innerText = `${person.firstName} ${person.lastName}`;
         anchor.href = "#";
         $(anchor).attr("data-id", person.id);
-        $(anchor).click(selectPerson);
+        $(anchor).click(selectItem);
         $(anchor).addClass("list-group-item");
         $(anchor).addClass("list-group-item-action");
         lstResults.append(anchor);
     }
 
-    function selectPerson(e) {
-        e.preventDefault();
-
-        let personAnchor = $(this);
-        let ddlSearch = $("#ddlSearch")
-
-        $("#hidIdPerson").val(personAnchor.data("id"));
-        $("#ddlSearch").val(personAnchor.text());
-        $("#lstResults").empty();
+    function selectItem(event){
+        event.preventDefault();
+        let dataId = $(this).data("id");
+        let dataText = $(this).html();
+        hidDataId.val(dataId);
+        $(`#${id}`).val(dataText);
+        lstResults.empty();
     }
 </script>
